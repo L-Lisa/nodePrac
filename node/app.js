@@ -24,17 +24,17 @@ app.get('/list', (req, res) => {
      return promise; */
 
 app.post('http://127.0.0.1:3000/add', (req, res) => {
-    /* [{ "tal": "10,343,2334,345,22,2233,233" }]  */
-    res.send({ "the ONE": "the two" })
+    let tal = ({ "tal": "10,343,2334,345,22,2233,233" })
+    res.send(JSON.parse(tal));
 })
 
 app.get('*', function (req, res) {
     res.status(404);
-    res.send('NOT ALLOWED');
+    res.send('NOT ALLOWED GET');
 });
 app.post('*', function (req, res) {
     res.status(404);
-    res.send('NOT ALLOWED');
+    res.send('NOT ALLOWED POST');
 });
 
 app.listen(port, host, () => {

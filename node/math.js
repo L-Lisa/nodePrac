@@ -21,10 +21,8 @@ app.get('/', (req, res) => {
 
 app.get('/add', (req, res) => {
     countIt()
-        .then(res => res.json())
-        .then(function (data) {
-            console.log(JSON.stringify({ data }))
-        })
+        .then(res => res.text())
+        .then(text => console.log(text))
         .catch(err => console.log(err))
 })
 
