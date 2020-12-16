@@ -9,10 +9,24 @@ const host = '127.0.0.1';
 const port = 3002;
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/", router);
+
+function checkResponseStatus(res) {
+    if (res.ok) {
+        return res
+    } else {
+        throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
+    }
+}
 
 const countIt = async () => {
-    let promise = await fetch('http://127.0.0.1:3000/add')
-    return promise
+    await fetch('http://127.0.0.1:3000/add')
+        .then(checkResponseStatus)
+        .then(res => res.json())
+        .then(json => {
+            console.log("fetchingstuff?")
+            console.log(json)
+        })
 }
 
 app.get('/', (req, res) => {
@@ -21,8 +35,6 @@ app.get('/', (req, res) => {
 
 app.get('/add', (req, res) => {
     countIt()
-        .then(res => res.text())
-        .then(text => console.log(text))
         .catch(err => console.log(err))
 })
 

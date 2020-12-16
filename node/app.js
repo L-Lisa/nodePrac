@@ -23,9 +23,9 @@ app.get('/list', (req, res) => {
       let promise = await fetch()
      return promise; */
 
-app.post('http://127.0.0.1:3000/add', (req, res) => {
+app.post('/add', (req, res) => {
     let tal = ({ "tal": "10,343,2334,345,22,2233,233" })
-    res.send(JSON.parse(tal));
+    res.send(tal);
 })
 
 app.get('*', function (req, res) {
