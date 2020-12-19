@@ -11,31 +11,15 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/", router);
 
-function checkResponseStatus(res) {
-    if (res.ok) {
-        return res
-    } else {
-        throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
-    }
-}
-
-const countIt = async () => {
-    await fetch('http://127.0.0.1:3000/add')
-        .then(checkResponseStatus)
-        .then(res => res.json())
-        .then(json => {
-            console.log("fetchingstuff?")
-            console.log(json)
-        })
-}
-
+//anropa math-server för en beräkning och returnera svaret i JSON-format.
 app.get('/', (req, res) => {
-    res.send("intro math")
-})
-
-app.get('/add', (req, res) => {
-    countIt()
-        .catch(err => console.log(err))
+    let tal = ({ "tal": "10,343,2334,345,22,2233,233" })
+    calculating = (tal.tal.split(",").map(ettTal => +ettTal));
+    var sum = calculating.reduce(function (a, b) {
+        return a + b;
+    }, 0);
+    console.log(sum);
+    res.send(`${sum}`)
 })
 
 app.listen(port, host, () => {
@@ -43,6 +27,11 @@ app.listen(port, host, () => {
 });
 
 module.exports = router;
+
+
+
+
+
 
 /*  .then(res => res.text())
    .then(text => console.log(text))
