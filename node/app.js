@@ -32,13 +32,12 @@ app.post('/talet', (req, res) => {
         .then(json => console.log(json))
         .then(data => res.send(data))
 })
-app.get('/talet', (req, res) => {
+/* app.get('/talet', (req, res) => {
     counting()
         .then(res => res.json())
         .then(json => console.log(json))
         .then(datan => res.send(datan))
-})
-
+}) */
 
 app.get('*', function (req, res) {
     res.status(404);
